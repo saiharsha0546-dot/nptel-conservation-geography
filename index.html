@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conservation Geography | Interactive Practice & Revision Module (2026)</title>
+  <meta name="description" content="Master Conservation Geography with week-wise interactive practice quizzes, study modes, instant rationales, and mock exam simulations based on NPTEL 2026 assignments.">
+  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Header Glassmorphism -->
+    <header class="header-glass">
+      <div class="header-top">
+        <div class="brand-section">
+          <div class="brand-icon">🗺️</div>
+          <div class="brand-meta">
+            <h1>Conservation Geography</h1>
+            <div class="badge-row">
+              <span class="badge badge-emerald">IIT Kanpur</span>
+              <span class="badge badge-cyan">Prof. Ankur Awadhiya</span>
+              <span class="badge badge-gold">2026 Assignment Series</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-right">
+          <!-- Option Shuffle Toggle -->
+          <button id="shuffleToggleBtn" class="btn-icon" style="width: auto; padding: 0 0.85rem; gap: 0.45rem; font-size: 0.82rem; font-weight: 600;" title="Shuffle options order randomly (Toggle ON/OFF)">
+            <span>🔀</span> <span id="shuffleLabel">Shuffle: ON</span>
+          </button>
+
+          <!-- Study vs Exam Mode Toggle -->
+          <div class="mode-toggle">
+            <button id="studyModeBtn" class="mode-btn active" title="Instant answers and detailed explanations">
+              <span>💡</span> Study Mode
+            </button>
+            <button id="examModeBtn" class="mode-btn" title="Timed mock exam with end-of-test evaluation">
+              <span>⏱️</span> Exam Mode
+            </button>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="themeToggleBtn" class="btn-icon" title="Toggle Light / Dark Mode">
+            ☀️
+          </button>
+        </div>
+      </div>
+
+      <!-- Week Selection Pills -->
+      <div id="weekPillsContainer" class="week-bar">
+        <!-- Dynamically injected week pills -->
+      </div>
+
+      <!-- Week Objectives Banner -->
+      <div class="objective-card">
+        <div class="objective-icon">🎯</div>
+        <div class="objective-content">
+          <h3 id="weekTitle">Week 1: Fundamentals of Movement, Geography & Ecology</h3>
+          <p id="weekObjective">Understand foundational principles of animal movement, the geographic framework of Alexander von Humboldt, biochemical interactions (allelopathy), habitat degradation mechanisms, and basic ecological principles (Liebig's Law, Conservation root words, Climatology, and Migration factors).</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quiz Interactive Layout -->
+    <main class="quiz-layout">
+      
+      <!-- Left Column: Quiz Stage -->
+      <section class="quiz-stage">
+        
+        <!-- Stage Header & Progress -->
+        <div class="stage-header">
+          <div class="progress-info">
+            <div class="q-counter">
+              <span id="qCounterCurrent">1</span> <span id="qCounterTotal">/ 10</span>
+            </div>
+            <div class="progress-bar-track">
+              <div id="progressBarFill" class="progress-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Exam Timer Box -->
+          <div id="timerBox" class="timer-box">
+            <span>⏳</span> <span id="timerText">15:00</span>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div id="questionCard" class="question-card">
+          <div class="question-meta-row">
+            <span id="questionTag" class="q-tag">Question 1 of 10</span>
+            <button id="flagBtn" class="btn-flag" title="Bookmark this question for review (Press 'F')">
+              <span>☆</span> Flag
+            </button>
+          </div>
+
+          <h2 id="questionText" class="question-text">
+            Loading question...
+          </h2>
+
+          <!-- Options Container -->
+          <div id="optionsList" class="options-list">
+            <!-- Dynamically injected options -->
+          </div>
+
+          <!-- Concept Explanation Drawer (Study Mode) -->
+          <div id="explanationCard" class="explanation-card">
+            <div class="explanation-header">
+              <span>💡</span> Key Concept & Explanation
+            </div>
+            <p id="explanationBody" class="explanation-body">
+              Explanation text will appear here.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons Bar -->
+        <div class="action-bar">
+          <button id="prevBtn" class="btn-secondary" title="Previous Question (Arrow Left)">
+            ← Previous
+          </button>
+          
+          <div style="display: flex; gap: 0.75rem;">
+            <button id="finishBtn" class="btn-primary btn-finish" style="display: none;" title="Submit and grade exam">
+              Submit Exam ✓
+            </button>
+            <button id="nextBtn" class="btn-primary" title="Next Question (Arrow Right)">
+              Next →
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right Column: Sidebar Navigator Palette -->
+      <aside class="quiz-sidebar">
+        
+        <!-- Navigator Card -->
+        <div class="sidebar-card">
+          <div class="sidebar-title">
+            <span>Question Palette</span>
+            <span id="liveScoreText" class="score-pill-live">0 / 10 Answered</span>
+          </div>
+
+          <div id="paletteGrid" class="palette-grid">
+            <!-- 1 to 10 question grid items -->
+          </div>
+
+          <!-- Legend -->
+          <div class="legend-list">
+            <div class="legend-row">
+              <div class="legend-dot legend-unanswered"></div>
+              <span>Unanswered / Pending</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot legend-correct"></div>
+              <span>Correct Answer (Study Mode)</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot legend-wrong"></div>
+              <span>Incorrect Attempt (Study Mode)</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot legend-flagged"></div>
+              <span>Flagged / Bookmarked (★)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools & Filter Card -->
+        <div class="sidebar-card filter-tools">
+          <div class="sidebar-title" style="margin-bottom: 0.5rem;">
+            <span>Review Filter</span>
+            <button id="resetQuizBtn" class="btn-icon" style="width: 32px; height: 32px; font-size: 0.85rem;" title="Reset answers">
+              🔄
+            </button>
+          </div>
+
+          <div class="filter-btn-group">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="unanswered">⏳ Pending</button>
+            <button class="filter-chip" data-filter="flagged">★ Flagged</button>
+            <button class="filter-chip" data-filter="incorrect">✕ Incorrect</button>
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-top: 0.5rem; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
+            <strong>⌨️ Keyboard Shortcuts:</strong><br>
+            • Keys <code>1</code> - <code>4</code>: Select Option A - D<br>
+            • <code>←</code> / <code>→</code>: Previous / Next<br>
+            • <code>F</code>: Toggle Flag bookmark
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <!-- Footer Note -->
+    <footer class="footer-note">
+      <p>Conservation Geography Practice Companion • Course based on NPTEL IIT Kanpur curriculum</p>
+    </footer>
+
+  </div>
+
+  <!-- Exam Result Modal -->
+  <div id="resultModal" class="modal-overlay">
+    <div class="modal-card">
+      <button id="modalCloseBtn" class="btn-icon" style="position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px;" title="Close">✕</button>
+      <div class="modal-icon">🏆</div>
+      <h2 id="modalTitle">Quiz Summary</h2>
+      <p id="modalSubtitle">Here is your performance summary for this assignment module:</p>
+
+      <div class="score-display-box">
+        <div class="stat-col">
+          <h4>Score</h4>
+          <p id="modalScoreValue">0%</p>
+        </div>
+        <div class="stat-col correct">
+          <h4>Correct</h4>
+          <p id="modalCorrectCount">0</p>
+        </div>
+        <div class="stat-col wrong">
+          <h4>Incorrect</h4>
+          <p id="modalWrongCount">0</p>
+        </div>
+        <div class="stat-col">
+          <h4>Pending</h4>
+          <p id="modalUnansweredCount">0</p>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="modalReviewBtn" class="btn-secondary">
+          🔍 Review Answers
+        </button>
+        <button id="modalRetakeBtn" class="btn-primary">
+          🔄 Retake Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+</body>
+</html>
